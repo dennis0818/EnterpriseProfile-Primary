@@ -1,0 +1,383 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>srtdash - ICO Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/themify-icons.css">
+    <link rel="stylesheet" href="assets/css/metisMenu.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/slicknav.min.css">
+    <!-- amchart css -->
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <!-- others css -->
+    <link rel="stylesheet" href="assets/css/typography.css">
+    <link rel="stylesheet" href="assets/css/default-css.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <!-- modernizr css -->
+    <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    
+    
+    <script src="https://webapi.amap.com/maps?v=1.4.8&key=a9184a5097c1111c60a016e977f63328&plugin=Map3D"></script>
+	<script src="https://gw.alipayobjects.com/os/antv/assets/lib/jquery-3.2.1.min.js"></script>
+	<script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.l7-1.3.0-beta.4/build/L7-min.js"></script>
+	
+	
+	
+	
+	<script src="incubator-echarts-master/dist/echarts.js"></script>
+	<script src="data/DataAll.js"></script>	
+	<script src="jquery-3.5.1/jquery-3.5.1.js"></script>
+	<script src="data/Result_All_eng.js"></script>
+    <script src="theme/macarons.js"></script>
+	<script src="data/GroupProfile.js"></script>
+	
+    
+    <!--<style>
+        #geomap{
+            padding: 0px;
+            margin: 50px;
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>-->
+    
+</head>
+
+<body>
+    
+    <!-- preloader area start -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- preloader area end -->
+    <!-- page container area start -->
+    <div class="page-container">
+        <!-- sidebar menu area start -->
+        <div class="sidebar-menu">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <a href="index.html"><img src="img/logo.png" alt="logo"></a>
+                </div>
+            </div>
+            <div class="main-menu">
+                <div class="menu-inner">
+                    <nav>
+                        <ul class="metismenu" id="menu">
+                            <li class="active">
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>区域</span></a>
+                                <ul class="collapse">
+                                    <li class="active"><a href="FrontPage.html">地图</a></li>
+                                    <li><a href="AreaChart.html">统计图表</a></li>
+                                    <li><a href="AreaStatistic.html">群体画像</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="EnterpriseTable.html" ><i class="ti-layout-sidebar-left"></i><span>企业列表</span>
+                                    </a>
+                                
+                            </li> 
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- sidebar menu area end -->
+        <!-- main content area start -->
+        <div class="main-content">
+            
+            <!-- page title area start -->
+            <div class="page-title-area">
+                <div class="row align-items-center">
+                    <div class="col-sm-6">
+                        <div class="breadcrumbs-area clearfix">
+                            <h4 class="page-title pull-left">区域统计图表</h4>
+                            <ul class="breadcrumbs pull-left">
+                                <li><a href="FrontPage.html">Home</a></li>
+                                <li><span>area-stat</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 clearfix">
+                        <div class="user-profile pull-right">
+                            <img class="avatar user-thumb" src="assets/images/author/avatar.png" alt="avatar">
+                            <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Kumkum Rai </h4>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- page title area end -->
+            <div class="main-content-inner">  
+                <!--bar chart start-->
+                
+                <!--bar chart end-->
+				<!--geomap and pie charts start-->
+				<div class="row">
+                	<div class="col-ml-8 col-lg-8 mt-5 col-xl-6">
+                        <div class="card">
+                            <div class="card-body col-xl-12">
+                                <h4 class="header-title">区域梯度</h4>
+                                <div id="tgi01" style="width: 600px; height: 400px"></div>								
+                            </div>
+                        </div>
+                    </div>
+                    <!-- sales area end -->
+                    <!-- timeline area start -->
+                    <div class="col-lg-4 mt-5 col-xl-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title">等级行业构成</h4>
+                                <div id="tgi02" style="width: 600px; height: 400px"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--geomap and pie charts end-->
+                
+                <div class="alert alert-warning mt-2 w-50" role="alert">
+                    <strong>等级3-4 :</strong> 监管等级为3-4级的企业在各市/行业分布的百分比<br>
+                    <strong>全部 :</strong> 全部企业在各市/行业分布的百分比<br>
+                    <strong>TGI指数 :</strong> 前两项数值之比乘100
+                    
+                </div>
+				
+				<div class="row">
+                	<div class="col-ml-8 col-lg-1 mt-5 col-xl-4">
+                        <div class="card">
+                            <div class="card-body col-xl-12">
+                                <h4 class="header-title">区域（监管等级）</h4>
+                                <div id="line_level" style="width: 400px; height: 250px"></div>								
+                            </div>
+                        </div>
+                    </div>
+                    <!-- sales area end -->
+                    <!-- timeline area start -->
+                    <div class="col-lg-1 mt-5 col-xl-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title">区域（排放趋势）</h4>
+                                <div id="line_trend" style="width: 400px; height: 250px"></div>
+                            </div>
+                        </div>
+                    </div>
+					
+					<div class="col-lg-1 mt-5 col-xl-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title">区域（污染程度）</h4>
+                                <div id="line_degree" style="width: 400px; height: 250px"></div>
+                            </div>
+                        </div>
+                    </div>
+					
+					<div class="col-lg-3 mt-5 col-xl-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title">区域（风险等级）</h4>
+                                <div id="line_risk" style="width: 500px; height: 250px"></div>
+                            </div>
+                        </div>
+                    </div>
+					
+					<div class="col-lg-3 mt-5 col-xl-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title">区域（管理水平）</h4>
+                                <div id="line_management" style="width: 500px; height: 250px"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				
+            </div>
+        </div>
+        
+    </div>
+    
+    <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
+    <!-- bootstrap 4 js -->
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/metisMenu.min.js"></script>
+    <script src="assets/js/jquery.slimscroll.min.js"></script>
+    <script src="assets/js/jquery.slicknav.min.js"></script>
+
+    <!-- start chart js -->
+    
+   
+    <!-- others plugins -->
+    <script src="assets/js/plugins.js"></script>
+    <script src="assets/js/scripts.js"></script>
+
+    
+    <script type="text/javascript">
+		var data_Group = GroupProfile;
+		
+		var data_cityTGI = data_Group.city;
+		var data_topIndustryTGI = data_Group.topIndustry;
+		var data_risk = data_Group.risk;
+		var data_trend = data_Group.trend;
+		var data_degree = data_Group.degree;
+		var data_level = data_Group.level;
+		var data_management = data_Group.management;
+		
+		var chart_tgi01 = echarts.init(document.getElementById("tgi01"));
+		var chart_tgi02 = echarts.init(document.getElementById("tgi02"));
+		
+		var chart_line_level = echarts.init(document.getElementById("line_level"));
+		var chart_line_trend = echarts.init(document.getElementById("line_trend"));
+		var chart_line_degree = echarts.init(document.getElementById("line_degree"));
+		var chart_line_risk = echarts.init(document.getElementById("line_risk"));
+		var chart_line_management = echarts.init(document.getElementById("line_management"));	
+	</script>
+	<script type="text/javascript">
+		function gen_TGIoption(data, miny0, maxy0, miny1, maxy1, intervaly0, intervaly1) {
+			let option = {
+
+				tooltip: {
+					trigger: 'axis'
+				},
+				legend: {
+					data: ['等级3-4', '全部', 'TGI']
+				},
+				xAxis: [
+					{
+						type: 'category',
+						data: data.index,
+						axisPointer: {
+							type: 'shadow'
+						},
+						axisLabel: {							
+							interval: 0,
+							fontSize: 8,
+							width: 300,
+							overflow: 'break'
+						}
+					}
+				],
+				yAxis: [
+					{
+						type: 'value',
+						name: '占比',
+						min: miny0,
+						max: maxy0,
+						interval: intervaly0,
+						axisLabel: {
+							formatter: '{value} %'
+						}
+					},
+					{
+						type: 'value',
+						name: 'TGI',
+						min: miny1,
+						max: maxy1,
+						interval: intervaly1
+					}
+				],
+				series: [
+					{
+						name: '等级3-4',
+						type: 'bar',
+						data: data.value34,
+						itemStyle: {
+							color: '#5ab1ef'
+						}
+					},
+					{
+						name: '全部',
+						type: 'bar',
+						data: data.value,
+						itemStyle: {
+							color: '#dfdfdf'
+						}
+					},
+					{
+						name: 'TGI',
+						type: 'line',
+						yAxisIndex: 1,
+						data: data.tgi,
+						 symbolSize: 8,
+						itemStyle: {
+							color: '#3c44f9'
+						}
+					}
+				]
+			};
+			return option;
+		}
+		
+		function gen_Lineoption(data) {
+			let option = {
+				tooltip: {
+					trigger: 'axis',
+					axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+						type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+					}
+				},
+				grid: {
+					left: '3%',
+					right: '4%',
+					bottom: '3%',
+					containLabel: true
+				},
+				xAxis: [
+					{
+						type: 'category',
+						data: data.index,
+						axisTick: {
+							alignWithLabel: true
+						}
+					}
+				],
+				yAxis: [
+					{
+						type: 'value',
+						axisLabel: {
+							formatter: '{value} %'
+						}
+					}
+				],
+				series: [
+					{
+						name: '占比',
+						type: 'bar',
+						barWidth: '40%',
+						data: data.value,
+						itemStyle: {
+							color: new echarts.graphic.LinearGradient(
+								0, 0, 0, 1,
+								[
+									{offset: 0, color: '#83bff6'},
+									{offset: 0.5, color: '#188df0'},
+									{offset: 1, color: '#188df0'}
+								]
+							)
+						},
+					}
+				]
+			};
+			return option;
+		}
+	</script>
+	<script type="text/javascript">		
+		chart_tgi01.setOption(gen_TGIoption(data_cityTGI, 0, 50, 50, 200, 10, 30));
+		chart_tgi02.setOption(gen_TGIoption(data_topIndustryTGI, 0, 70, 0, 140, 10, 20));
+		
+		chart_line_level.setOption(gen_Lineoption(data_level));
+		chart_line_trend.setOption(gen_Lineoption(data_trend));
+		chart_line_degree.setOption(gen_Lineoption(data_degree));
+		chart_line_risk.setOption(gen_Lineoption(data_risk));
+		chart_line_management.setOption(gen_Lineoption(data_management));
+	</script>
+    
+</body>
+
+</html>

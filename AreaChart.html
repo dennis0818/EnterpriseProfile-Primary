@@ -1,0 +1,691 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>srtdash - ICO Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/themify-icons.css">
+    <link rel="stylesheet" href="assets/css/metisMenu.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/slicknav.min.css">
+    <!-- amchart css -->
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <!-- others css -->
+    <link rel="stylesheet" href="assets/css/typography.css">
+    <link rel="stylesheet" href="assets/css/default-css.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <!-- modernizr css -->
+    <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    
+    
+    <script src="https://webapi.amap.com/maps?v=1.4.8&key=a9184a5097c1111c60a016e977f63328&plugin=Map3D"></script>
+	<script src="https://gw.alipayobjects.com/os/antv/assets/lib/jquery-3.2.1.min.js"></script>
+	<script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.l7-1.3.0-beta.4/build/L7-min.js"></script>
+	
+	
+	
+	
+	<script src="incubator-echarts-master/dist/echarts.js"></script>
+	<script src="data/DataAll.js"></script>	
+	<script src="jquery-3.5.1/jquery-3.5.1.js"></script>
+	<script src="data/Result_All_eng.js"></script>
+    <script src="theme/macarons.js"></script>
+	
+    
+    <!--<style>
+        #geomap{
+            padding: 0px;
+            margin: 50px;
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>-->
+    
+</head>
+
+<body>
+    
+    <!-- preloader area start -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- preloader area end -->
+    <!-- page container area start -->
+    <div class="page-container">
+        <!-- sidebar menu area start -->
+        <div class="sidebar-menu">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <a href="index.html"><img src="img/logo.png" alt="logo"></a>
+                </div>
+            </div>
+            <div class="main-menu">
+                <div class="menu-inner">
+                    <nav>
+                        <ul class="metismenu" id="menu">
+                            <li class="active">
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>区域</span></a>
+                                <ul class="collapse">
+                                    <li class="active"><a href="FrontPage.html">地图</a></li>
+                                    <li><a href="AreaChart.html">统计图表</a></li>
+                                    <li><a href="AreaStatistic.html">群体画像</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="EnterpriseTable.html" ><i class="ti-layout-sidebar-left"></i><span>企业列表</span>
+                                    </a>
+                                
+                            </li> 
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- sidebar menu area end -->
+        <!-- main content area start -->
+        <div class="main-content">
+            
+            <!-- page title area start -->
+            <div class="page-title-area">
+                <div class="row align-items-center">
+                    <div class="col-sm-6">
+                        <div class="breadcrumbs-area clearfix">
+                            <h4 class="page-title pull-left">区域统计图表</h4>
+                            <ul class="breadcrumbs pull-left">
+                                <li><a href="FrontPage.html">Home</a></li>
+                                <li><span>area-stat</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 clearfix">
+                        <div class="user-profile pull-right">
+                            <img class="avatar user-thumb" src="assets/images/author/avatar.png" alt="avatar">
+                            <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Kumkum Rai </h4>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- page title area end -->
+            <div class="main-content-inner">  
+                <!--bar chart start-->
+                <div class="mw-50 mh-90 mt-2 mb-2">
+                    
+                        <div class="card">
+                            <div class="card-body">
+                                
+                                <div id="bar-chart01" style="width: 1000px;height:500px;"></div>
+                                
+                            </div>
+                        </div>
+                    
+                </div>
+                <!--bar chart end-->
+				<!--geomap and pie charts start-->
+				<div class="row">
+                	<div class="col-ml-8 col-lg-8 mt-5 col-xl-7">
+                        <div class="card">
+                            <div class="card-body col-xl-12">
+                                <h4 class="header-title">区域梯度</h4>
+                                <div>
+									<button id="level" type="button" class="btn btn-outline-dark mb-3">等级</button>
+									<button id="risk" type="button" class="btn btn-outline-dark mb-3">风险</button>
+									<button id="management" type="button" class="btn btn-outline-dark mb-3">管理</button>
+									<button id="credit" type="button" class="btn btn-outline-dark mb-3">信用</button>
+									<button id="degree" type="button" class="btn btn-outline-dark mb-3">程度</button>
+									<button id="trend" type="button" class="btn btn-outline-dark mb-3">趋势</button>
+								</div>
+								<div id="geomap" style="width: 500px; height: 700px"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- sales area end -->
+                    <!-- timeline area start -->
+                    <div class="col-lg-4 mt-5 col-xl-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title">等级行业构成</h4>
+                                <div id="right" style="width: 500px;height: 700px"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--geomap and pie charts end-->
+            </div>
+        </div>
+        
+    </div>
+    
+    <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
+    <!-- bootstrap 4 js -->
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/metisMenu.min.js"></script>
+    <script src="assets/js/jquery.slimscroll.min.js"></script>
+    <script src="assets/js/jquery.slicknav.min.js"></script>
+
+    <!-- start chart js -->
+    
+    <!-- all line chart activation -->
+    <script src="assets/js/line-chart.js"></script>
+    <!-- all pie chart -->
+    <script src="assets/js/pie-chart.js"></script>
+    <!-- others plugins -->
+    <script src="assets/js/plugins.js"></script>
+    <script src="assets/js/scripts.js"></script>
+    
+    
+    
+    
+    
+	
+
+    
+    <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById('bar-chart01'), 'macarons');
+        
+        option = {            
+            tooltip: {
+                
+                trigger: 'axis',
+                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            legend: {
+                data: ['制造业', '水利、环境和公共设施管理业', '电力、热力、燃气及水生产和供应业', '采矿业']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    data: ['中卫市', '吴忠市', '固原市', '石嘴山市', '银川市']
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value'
+                }
+            ],
+            /*itemStyle: {
+                //color: ['#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3'],
+                shadowBlur: 5,
+                shadowColor: 'rgba(0, 0, 0, 0.8)'
+            },*/
+            series: [
+                
+                {
+                    name: '制造业',
+                    type: 'bar',
+                    stack: '1',
+                    data: [1, 4, 2, 1, 3],
+                    /*itemStyle: {
+                        color: '#dabef7'
+                    }*/
+                },
+                {
+                    name: '水利、环境和公共设施管理业',
+                    type: 'bar',
+                    stack: '1',
+                    data: [0, 0, 2, 0, 1],
+                    /*itemStyle: {
+                        color: '#c697f6'
+                    }*/
+                },
+                {
+                    name: '电力、热力、燃气及水生产和供应业',
+                    type: 'bar',
+                    stack: '1',
+                    data: [0, 2, 0, 4, 6],
+                    /*itemStyle: {
+                        color: '#b774fc'
+                    }*/
+                },
+                {
+                    name: '采矿业',
+                    type: 'bar',
+                    stack: '1',
+                    data: [0, 0, 0, 0, 0],
+                    /*itemStyle: {
+                        color: '#9036ed'
+                    }*/
+                },
+                {
+                    name: '制造业',
+                    type: 'bar',
+                    stack: '2',
+                    data: [16, 13, 0, 13, 19],
+                    /*itemStyle: {
+                        color: '#dabef7'
+                    }*/
+                },
+                {
+                    name: '水利、环境和公共设施管理业',
+                    type: 'bar',
+                    stack: '2',
+                    data: [1, 7, 1, 0, 2],
+                    /*itemStyle: {
+                        color: '#c697f6'
+                    }*/
+                },
+                {
+                    name: '电力、热力、燃气及水生产和供应业',
+                    type: 'bar',
+                    stack: '2',
+                    data: [7, 10, 9, 14, 20],
+                    /*itemStyle: {
+                        color: '#b774fc'
+                    }*/
+                },
+                {
+                    name: '采矿业',
+                    type: 'bar',
+                    stack: '2',
+                    data: [0, 0, 1, 0, 4],
+                    /*itemStyle: {
+                        color: '#9036ed'
+                    }*/
+                },
+                {
+                    name: '制造业',
+                    type: 'bar',
+                    stack: '3',
+                    data: [12, 5, 1, 4, 5],
+                    /*itemStyle: {
+                        color: '#dabef7'
+                    }*/
+                },
+                {
+                    name: '水利、环境和公共设施管理业',
+                    type: 'bar',
+                    stack: '3',
+                    data: [2, 0, 1, 1, 1],
+                    /*itemStyle: {
+                        color: '#c697f6'
+                    }*/
+                },
+                {
+                    name: '电力、热力、燃气及水生产和供应业',
+                    type: 'bar',
+                    stack: '3',
+                    data: [2, 2, 3, 2, 2],
+                    /*itemStyle: {
+                        color: '#b774fc'
+                    }*/
+                },
+                {
+                    name: '采矿业',
+                    type: 'bar',
+                    stack: '3',
+                    data: [0, 0, 0, 0, 1],
+                    /*itemStyle: {
+                        color: '#9036ed'
+                    }*/
+                },
+                {
+                    name: '制造业',
+                    type: 'bar',
+                    stack: '4',
+                    data: [2, 2, 0, 1, 4],
+                    /*itemStyle: {
+                        color: '#dabef7'
+                    }*/
+                },
+                {
+                    name: '水利、环境和公共设施管理业',
+                    type: 'bar',
+                    stack: '4',
+                    data: [0, 0, 0, 0, 0],
+                    /*itemStyle: {
+                        color: '#c697f6'
+                    }*/
+                },
+                {
+                    name: '电力、热力、燃气及水生产和供应业',
+                    type: 'bar',
+                    stack: '4',
+                    data: [0, 0, 0, 2, 1],
+                    /*itemStyle: {
+                        color: '#b774fc'
+                    }*/
+                },
+                {
+                    name: '采矿业',
+                    type: 'bar',
+                    stack: '4',
+                    data: [0, 0, 0, 0, 0],
+                    /*itemStyle: {
+                        color: '#9036ed'
+                    }*/
+                }
+               
+            ]
+        };
+        myChart.setOption(option);
+    
+    
+    
+    </script>
+	<script type="text/javascript">
+		var myChart_geo = echarts.init(document.getElementById("geomap"), 'macarons');
+		var myChart_r = echarts.init(document.getElementById("right"), "macarons");
+		var resAlleng = DataAlleng;
+		
+		var button_level = document.getElementById("level");
+		var button_risk = document.getElementById("risk");
+		var button_management = document.getElementById("management");
+		var button_credit = document.getElementById("credit");
+		var button_degree = document.getElementById("degree");
+		var button_trend = document.getElementById("trend");
+		
+		
+		
+	
+	</script>
+	<script type="text/javascript">
+		function cal_average(data, city, column) {
+			let select = data.filter(function(c) {
+				return c.city === city;
+			});
+			
+			let sum = 0;
+			let n = select.length;
+			for(let i = 0; i<n; i++) {
+				sum += Number(select[i][column]);
+			}
+			return sum / n;
+		}
+		
+		function cal_maxmin(data, column) {
+			let city_list = ["石嘴山", "银川", "吴忠", "中卫", "固原"];
+			let base_arr = new Array();
+			for(let i = 0; i<city_list.length; i++) {
+				let value =  cal_average(data, city_list[i], column);
+				base_arr.push(value);				
+			}
+			let max = Math.max.apply(null, base_arr);
+			let min = Math.min.apply(null, base_arr);
+			return [min, max];
+		}
+		
+		
+			window.onload = function() {
+				let target_list = ["level", "risk", "management", "credit", "degree", "trend"];
+				let button_list = [button_level, button_risk, button_management, button_credit, button_degree, button_trend];
+				for(let i = 0; i<target_list.length; i++) {
+					
+					button_list[i].onclick = function() {
+						
+						myChart_geo.showLoading();
+
+						$.get("https://geo.datav.aliyun.com/areas_v2/bound/640000_full.json", function(geojson){
+
+							myChart_geo.hideLoading();
+
+							echarts.registerMap("ningxia", geojson);
+							
+							let option_target = {
+								visualMap: {
+									min: cal_maxmin(resAlleng, target_list[i])[0],
+									max: cal_maxmin(resAlleng, target_list[i])[1],
+									text: ['High', 'Low'],
+									realtime: false,
+									calculable: true,
+									inRange: {
+										color: ['white', 'blue']
+									}
+								},
+								series : [ {
+									map : "ningxia",
+									type : "map",
+									aspectScale: 1.0,
+									selectedMode: 'single',//选择类型,
+									hoverable:false,//鼠标经过高亮
+									roam: false,//鼠标滚轮缩放
+									label: {
+										show : true
+									},
+                                    itemStyle: {
+                                      shadowColor : 'gray'  
+                                    },
+									data: [
+										{name : "石嘴山" , value : cal_average(resAlleng, "石嘴山", target_list[i])},
+										{name : "银川" , value : cal_average(resAlleng, "银川", target_list[i])},
+										{name : "吴忠" , value : cal_average(resAlleng, "吴忠", target_list[i])},
+										{name : "中卫" , value : cal_average(resAlleng, "中卫", target_list[i])},
+										{name : "固原" , value : cal_average(resAlleng, "固原", target_list[i])}
+									],
+									nameMap: {
+										"石嘴山市": "石嘴山",
+										"银川市": "银川",
+										"吴忠市": "吴忠",
+										"中卫市": "中卫",
+										"固原市": "固原"                    
+									}
+								}]
+							};
+							myChart_geo.setOption(option_target);
+							console.log(target_list[i]);
+
+						});
+					};
+				}
+			};
+			
+		
+		
+	</script>
+	<script type="text/javascript">
+		myChart_geo.showLoading();
+
+		$.get("https://geo.datav.aliyun.com/areas_v2/bound/640000_full.json", function(geojson){
+			
+			myChart_geo.hideLoading();
+ 
+        	echarts.registerMap("ningxia", geojson);
+			
+ 			let option = {
+				visualMap: {
+					min: cal_maxmin(resAlleng, "level")[0],
+					max: cal_maxmin(resAlleng, "level")[1],
+					text: ['High', 'Low'],
+					realtime: false,
+					calculable: true,
+					inRange: {
+						color: ['white', 'blue']
+					}
+				},
+				series : [ {
+					map : "ningxia",
+					type : "map",
+					aspectScale: 1.0,
+					selectedMode: 'single',//选择类型,
+					hoverable:false,//鼠标经过高亮
+					roam: false,//鼠标滚轮缩放
+					label: {
+						show : true
+					},
+					data: [
+						{name : "石嘴山" , value : cal_average(resAlleng, "石嘴山", "level")},
+						{name : "银川" , value : cal_average(resAlleng, "银川", "level")},
+						{name : "吴忠" , value : cal_average(resAlleng, "吴忠", "level")},
+						{name : "中卫" , value : cal_average(resAlleng, "中卫", "level")},
+						{name : "固原" , value : cal_average(resAlleng, "固原", "level")}
+					],
+					nameMap: {
+                    "石嘴山市": "石嘴山",
+                    "银川市": "银川",
+                    "吴忠市": "吴忠",
+                    "中卫市": "中卫",
+                    "固原市": "固原"                    
+                }
+				}]
+			};
+			
+        	myChart_geo.setOption(option);
+			
+			myChart_geo.on("click", "series", function(param) {
+				
+				fill_pie_option(param.name);
+				
+			});
+			
+			
+    });
+		
+		
+		
+	</script>
+	<script type="text/javascript">
+		function fill_pie_option(cityName) {
+			var cityArr = resAlleng.filter(function(c) { //找出点击的城市
+				return c.city === cityName;
+			});
+			console.log(cityArr.length);
+			 //在这个城市内按各个level划分数据
+			let cityArr_level_list = new Array();
+			
+			let radius_list = new Array(); //存储各个等级的数量，作为饼图半径
+			
+			for(let i = 1;i<5; i++) {
+				let cityArr_level = cityArr.filter(function(l) {
+					return l.level === (i + "");
+				});
+				
+				cityArr_level_list.push(cityArr_level);
+				radius_list.push(cityArr_level.length);
+					
+			}
+			
+			let industry_list = ['电力、热力、燃气及水生产和供应业', '制造业', '水利、环境和公共设施管理业', '采矿业'];
+			
+			let industry_level_count_list = new Array();
+			industry_level_count_list.push(["level_industry", "等级1", "等级2", "等级3", "等级4"]);
+			for(let j = 0; j < industry_list.length; j++) {
+				let each_industry = new Array();
+				each_industry.push(industry_list[j]);
+				for(let k = 0; k < cityArr_level_list.length; k++) {
+					let inner_arr = cityArr_level_list[k].filter(function(d) {
+						return d.topIndustry === industry_list[j];
+					});
+					each_industry.push(inner_arr.length);
+				}
+				industry_level_count_list.push(each_industry);
+				}
+				
+			console.log(industry_level_count_list);
+			
+			function cal_sum(arr) {
+				let sum = 0;
+				for(let i = 0; i<arr.length; i++) {
+					sum += arr[i];
+				}
+				return sum;
+			}
+			
+			let radius_times = 3;
+			
+			var option_r = {
+				title: [{
+					text: cityName
+				}, {
+					subtext: '等级1 : ' + radius_list[0],
+					left: '25%',
+					top: '50%',
+					textAlign: 'center'
+				}, {
+					subtext: '等级2 : ' + radius_list[1],
+					left: '75%',
+					top: '50%',
+					textAlign: 'center'
+				}, {
+					subtext: '等级3 : ' + radius_list[2],
+					left: '25%',
+					top: '90%',
+					textAlign: 'center'
+				},{
+					subtext: '等级4 : ' + radius_list[3],
+					left: '75%',
+					top: '90%',
+					textAlign: 'center'
+				}
+					   ],
+				legend: {
+					top: '10%'
+				},
+				tooltip: {},
+				dataset: {
+					source: industry_level_count_list
+				},
+				series: [{
+					title: '等级1',
+					type: 'pie',
+					label: {
+						show: false 
+					},
+					radius: radius_times * Math.log((radius_list[0] / cal_sum(radius_list)) * 100000) + '%',
+					center: ['25%', '35%'],
+					encode: {
+						itemName: 'level_industry',
+						value: '等级1'
+					}
+				}, {
+					title: '等级2',
+					type: 'pie',
+					label: {
+						show: false 
+					},
+					radius: radius_times * Math.log((radius_list[1] / cal_sum(radius_list)) * 100000) + '%',
+					center: ['75%', '35%'],
+					encode: {
+						itemName: 'level_industry',
+						value: '等级2'
+					}
+				}, {
+					title: '等级3',
+					type: 'pie',
+					label: {
+						show: false 
+					},
+					radius: radius_times * Math.log((radius_list[2] / cal_sum(radius_list)) * 100000) + '%',
+					center: ['25%', '75%'],
+					encode: {
+						itemName: 'level_industry',
+						value: '等级3'
+					}
+				}, {
+					title: '等级4',
+					type: 'pie',
+					label: {
+						show: false 
+					},
+					radius: radius_times * Math.log((radius_list[3] / cal_sum(radius_list)) * 100000) + '%',
+					center: ['75%', '75%'],
+					encode: {
+						itemName: 'level_industry',
+						value: '等级4'
+					}
+				}]
+			};
+			myChart_r.setOption(option_r);
+		}
+	</script>
+	<script type="text/javascript">
+		fill_pie_option("银川");
+	</script>
+    
+</body>
+
+</html>

@@ -1,0 +1,281 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>srtdash - ICO Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/themify-icons.css">
+    <link rel="stylesheet" href="assets/css/metisMenu.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/slicknav.min.css">
+    <!-- amchart css -->
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <!-- others css -->
+    <link rel="stylesheet" href="assets/css/typography.css">
+    <link rel="stylesheet" href="assets/css/default-css.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <!-- modernizr css -->
+    <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    
+    
+    <script src="https://webapi.amap.com/maps?v=1.4.8&key=a9184a5097c1111c60a016e977f63328&plugin=Map3D"></script>
+	<script src="https://gw.alipayobjects.com/os/antv/assets/lib/jquery-3.2.1.min.js"></script>
+	<script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.l7-1.3.0-beta.4/build/L7-min.js"></script>
+	<script src="data/DataAll.js"></script>
+    
+    <style> ::-webkit-scrollbar{display:contents;}html,body{overflow:hidden;margin:0;}
+    	#map { position:relative; top:5; bottom:5; width:100%;height: 800px }
+    </style>
+	
+	<link rel="stylesheet" href="https://gw.alipayobjects.com/os/rmsportal/PqLCOJpqoOUfuPRacUzE.css" />
+    
+    
+    
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- preloader area start -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- preloader area end -->
+    <!-- page container area start -->
+    <div class="page-container">
+        <!-- sidebar menu area start -->
+        <div class="sidebar-menu">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <a href="index.html"><img src="img/logo.png" alt="logo"></a>
+                </div>
+            </div>
+            <div class="main-menu">
+                <div class="menu-inner">
+                    <nav>
+                        <ul class="metismenu" id="menu">
+                            <li class="active">
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>区域</span></a>
+                                <ul class="collapse">
+                                    <li class="active"><a href="FrontPage.html">地图</a></li>
+                                    <li><a href="AreaChart.html">统计图表</a></li>
+                                    <li><a href="AreaStatistic.html">群体画像</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="EnterpriseTable.html" ><i class="ti-layout-sidebar-left"></i><span>企业列表</span>
+                                    </a>
+                                
+                            </li> 
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- sidebar menu area end -->
+        <!-- main content area start -->
+        <div class="main-content">
+            <!-- header area start -->
+            
+            <!-- header area end -->
+            <!-- page title area start -->
+            <div class="page-title-area">
+                <div class="row align-items-center">
+                    <div class="col-sm-6">
+                        <div class="breadcrumbs-area clearfix">
+                            <h4 class="page-title pull-left">区域数据可视化</h4>
+                            <ul class="breadcrumbs pull-left">
+                                <li><a >Home</a></li>
+                                <li><span>Dashboard</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 clearfix">
+                        <div class="user-profile pull-right">
+                            <img class="avatar user-thumb" src="assets/images/author/avatar.png" alt="avatar">
+                            <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Kumkum Rai <i class="fa fa-angle-down"></i></h4>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Message</a>
+                                <a class="dropdown-item" href="#">Settings</a>
+                                <a class="dropdown-item" href="#">Log Out</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- page title area end -->
+            <div class="main-content-inner">
+                <!-- sales report area start -->
+                
+                <!-- sales report area end -->
+                <!-- overview area start -->
+                
+                <!-- overview area end -->
+                <!-- market value area start -->
+                
+                
+                <!--map start-->
+                <!--地图图层布局是重点-->
+                <div class="mw-100 mh-90 mt-2 mb-2">
+                    
+                        <div class="card">
+                            <div class="card-body">
+                                
+                                <div id="map" ></div>
+                                
+                            </div>
+                        </div>
+                    
+                </div>
+                <!--map end-->
+                
+                
+                <!-- market value area end -->
+                <!-- row area start -->
+                
+                <!-- row area end -->
+                
+                <!-- row area start-->
+            </div>
+        </div>
+        <!-- main content area end -->
+        <!-- footer area start-->
+       
+        <!-- footer area end-->
+    </div>
+    <!-- page container area end -->
+    <!-- offset area start -->
+   
+    <!-- offset area end -->
+    <!-- jquery latest version -->
+    <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
+    <!-- bootstrap 4 js -->
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/metisMenu.min.js"></script>
+    <script src="assets/js/jquery.slimscroll.min.js"></script>
+    <script src="assets/js/jquery.slicknav.min.js"></script>
+
+    <!-- start chart js -->
+    
+    <!-- all line chart activation -->
+    <script src="assets/js/line-chart.js"></script>
+    <!-- all pie chart -->
+    <script src="assets/js/pie-chart.js"></script>
+    <!-- others plugins -->
+    <script src="assets/js/plugins.js"></script>
+    <script src="assets/js/scripts.js"></script>
+    
+    
+    
+    
+    
+	
+<script>
+  var scene = new L7.Scene({
+    id: 'map',
+    mapStyle: 'amap://styles/fresh', // 样式URL
+    center: [105.9446722, 37.0079583],
+    pitch: 35,
+    zoom: 8,
+    rotation: 4.183582
+  });
+	
+  window.scene = scene;
+	
+  scene.on('loaded', function() {
+	   
+	  //添加市边界
+	  $.get('https://geo.datav.aliyun.com/areas_v2/bound/640000_full.json', function(data) {
+
+		    scene.PolygonLayer({
+			  zIndex: 0
+			}).source(data).shape('fill').color('#f006ed').style({
+			  opacity: 0.05
+			}).render();
+
+			scene.LineLayer({
+			  zIndex: 0
+			}).source(data).shape('line').size(2).color('#f006ed').style({
+			  opacity: 1.0
+			}).render();
+				});
+    	//柱状图层
+      var layer_hexagon = scene.PointLayer({
+        zIndex: 1
+      }).source(DataAll, {
+        parser: {
+          type: 'json',
+          x: 'lng',
+          y: 'lat'
+        }
+      }).shape('hexagonColumn').size('level', function(level) {
+        return [8, 8, level*20];
+      }).active(true).color('level', 'yellow-red').render();
+	  
+	  //热力图层
+	  var layer_heat = scene.HeatmapLayer({
+          zIndex: 2
+        }).source(DataAll, {
+          parser: {
+            type: 'json',
+            x: 'lng',
+            y: 'lat'
+          }
+        }).size('level', [0, 1]) // weight映射通道
+        .style({
+          intensity: 4,
+          radius: 50,
+          opacity: 0.8,
+          rampColors: {
+            colors: ['#2E8AE6', '#69D1AB', '#DAF291', '#FFD591', '#FF7A45', '#CF1D49'],
+            positions: [0, 0.2, 0.4, 0.6, 0.8, 1.0]
+          }
+        }).render();
+	
+	  //加一个图层控制器
+	var overlayers = {
+        "3D柱状图": layer_hexagon,
+        "热力图": layer_heat
+      };
+	
+      new L7.Control.Layers({
+        overlayers: overlayers
+      }).addTo(scene);
+	  
+	  //加一个提示
+	  
+	    layer_hexagon.on('click', function(e) {
+        var lnglat = e.lnglat,
+          feature = e.feature;
+
+        var html = '<p>\u7701\u4EFD\uFF1A' + lnglat.lng + '</p>\n        <p>\u5730\u533A\uFF1A' + lnglat.lat + '</p>\n        <p>\u6E29\u5EA6\uFF1A' + feature.name + '</p>\n';
+			
+			
+			
+
+
+        new L7.Popup().setLnglat([lnglat.lng, lnglat.lat]).setHTML(html).addTo(scene);
+      });
+	 
+  });
+	
+	 
+	
+    
+  
+</script>
+    
+    
+    
+</body>
+
+</html>

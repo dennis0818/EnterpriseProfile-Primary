@@ -1,0 +1,483 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Datatable - srtdash</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+<link rel="stylesheet" href="assets/css/themify-icons.css">
+<link rel="stylesheet" href="assets/css/metisMenu.css">
+<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+<link rel="stylesheet" href="assets/css/slicknav.min.css">
+<!-- amcharts css -->
+<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+<!-- Start datatable css -->
+<!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.jqueryui.min.css">-->
+<!-- style css -->
+<link rel="stylesheet" href="assets/css/typography.css">
+<link rel="stylesheet" href="assets/css/default-css.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="stylesheet" href="assets/css/responsive.css">
+<!-- modernizr css -->
+<script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+<script src = "data/DataAll.js"></script>
+    <script src="data/Result_All_eng_numeric.js"></script>
+</head>
+
+<body>
+ 
+<!-- preloader area start -->
+<div id="preloader">
+  <div class="loader"></div>
+</div>
+<!-- preloader area end --> 
+<!-- page container area start -->
+<div class="page-container"> 
+  <!-- sidebar menu area start -->
+  <div class="sidebar-menu">
+    <div class="sidebar-header">
+      <div class="logo"> <a href="index.html"><img src="img/logo.png" alt="logo"></a> </div>
+    </div>
+    <div class="main-menu">
+                <div class="menu-inner">
+                    <nav>
+                        <ul class="metismenu" id="menu">
+                            <li class="active">
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>区域</span></a>
+                                <ul class="collapse">
+                                    <li class="active"><a href="FrontPage.html">地图</a></li>
+                                    <li><a href="AreaChart.html">统计图表</a></li>
+                                    <li><a href="AreaStatistic.html">群体画像</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="EnterpriseTable.html" ><i class="ti-layout-sidebar-left"></i><span>企业列表</span>
+                                    </a>
+                                
+                            </li> 
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+  </div>
+  <!-- sidebar menu area end --> 
+  <!-- main content area start -->
+  <div class="main-content"> 
+    <!-- header area start -->
+    
+    <!-- header area end --> 
+    <!-- page title area start -->
+    <div class="page-title-area">
+      <div class="row align-items-center">
+        <div class="col-sm-6">
+          <div class="breadcrumbs-area clearfix">
+            <h4 class="page-title pull-left">企业列表</h4>
+            <ul class="breadcrumbs pull-left">
+              <li><a href="FrontPage.html">Home</a></li>
+              <li><span>Datatable</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- page title area end -->
+    <div class="main-content-inner">
+       <div class="col-12 mt-5">
+          <div class="card">
+            <div class="card-body">
+               
+                <div class="row w-100">
+                    <span class="ml-2">监管等级</span>
+                    <select id="select_level" class="custome-select border-1 ml-2 pr-4">
+                        <option value="-1000">请选择</option>
+                        <option value="1">1 级</option>
+                        <option value="2">2 级</option>
+                        <option value="3">3 级</option>
+                        <option value="4">4 级</option>
+                    </select>
+
+                    <span class="ml-3">风险等级</span>
+                    <select id="select_risk" class="custome-select border-1 ml-2 pr-4">
+                        <option value="-1000">请选择</option>
+                        <option value="1">1 级</option>
+                        <option value="2">2 级</option>
+                        <option value="3">3 级</option>					
+                    </select>
+
+                    <span class="ml-3">管理水平</span>
+                    <select id="select_management" class="custome-select border-1 ml-2 pr-4">
+                        <option value="-1000">请选择</option>
+                        <option value="25,50">25 - 50</option>
+                        <option value="50,75">50 - 75</option>
+                        <option value="75,100">75 - 100</option>					
+                    </select>
+
+                    <span class="ml-3">信用水平</span>
+                    <select id="select_credit" class="custome-select border-1 ml-2 pr-4">
+                        <option value="-1000">请选择</option>
+                        <option value="3,4">低</option>
+                        <option value="2,3">中</option>
+                        <option value="1,2">高</option>					
+                    </select>
+
+                    <span class="ml-3">污染程度</span>
+                    <select id="select_degree" class="custome-select border-1 ml-2 pr-4">
+                        <option value="-1000">请选择</option>
+                        <option value="1">1 级</option>
+                        <option value="2">2 级</option>
+                        <option value="3">3 级</option>					
+                    </select>
+
+                    <span class="ml-3">排放趋势</span>
+                    <select id="select_trend" class="custome-select border-1 ml-2 pr-4">
+                        <option value="-1000">请选择</option>
+                        <option value="-1">下降</option>
+                        <option value="0">平缓</option>
+                        <option value="1">上升</option>					
+                    </select>
+
+                    <span class="ml-3">监管投诉</span>
+                    <select id="select_complain" class="custome-select border-1 ml-2 pr-4">
+                        <option value="-1000">请选择</option>
+                        <option value="0,1">无</option>
+                        <option value="1,1000">有</option>					
+                    </select>
+                </div>
+                 <div class="row mt-3 mb-2 mw-100 float-right">
+                     
+                     <span class="float-right">
+                        <span >所在地区</span>
+                        <select id="select_city" class="custome-select border-1 ml-1 pr-5">
+                            <option value="未选择">请选择</option>
+                            <option value="银川 ">银川市</option>
+                            <option value="石嘴山 ">石嘴山市</option>
+                            <option value="吴忠 ">吴忠市</option>
+                            <option value="中卫 ">中卫市</option>
+                            <option value="固原 ">固原市</option>
+                        </select>
+                    </span>
+                </div>
+                <div class="row w-100 justify-content-sm-center">
+                    
+                        <button id="reload" type="button" class="btn btn-outline-dark btn-xs col-1 mb-1 mr-4">重置</button>
+                        <button id="search" type="button" class="btn btn-outline-dark btn-xs col-1 mb-1 mr-4">搜索</button>
+                    
+                </div>
+                
+			</div>
+          </div>
+        </div>
+        <!-- data table start -->
+        <div class="col-12 mt-3">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="header-title">Data Table Enterprise</h4>
+              <div class="data-tables">
+                <table id="dataTable" class="text-center" cellspacing="10" cellpadding="10" width="100%" align="center" border="0">
+                  <thead class="bg-light text-capitalize table-bordered">
+                    <tr style="height: 40px">
+                      <th style="width: 8%">序号</th>
+                      <th>企业名称</th>
+                      <th>位置</th>
+                      <th>行业</th>
+                        <th style="width: 15%">排放种类</th>
+                      <th style="width: 10%; background-color:lavender">等级</th>
+                    </tr>
+                  </thead>
+                  <tbody id="table_body" class="bg-light table-bordered">
+                    <!-- 自动填入生成的.js数据  green:#BFE4CE blue:#C7DBF6 yellow:#EFE9A2 red:#ECA3A4-->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- data table end --> 
+        
+      
+    </div>
+  </div>
+  <!-- main content area end --> 
+  
+</div>
+<!-- page container area end --> 
+<!-- offset area start -->
+
+<!-- offset area end --> 
+<!-- jquery latest version --> 
+<script src="assets/js/vendor/jquery-2.2.4.min.js"></script> 
+<!-- bootstrap 4 js --> 
+<script src="assets/js/popper.min.js"></script> 
+<script src="assets/js/bootstrap.min.js"></script> 
+<script src="assets/js/owl.carousel.min.js"></script> 
+<script src="assets/js/metisMenu.min.js"></script> 
+<script src="assets/js/jquery.slimscroll.min.js"></script> 
+<script src="assets/js/jquery.slicknav.min.js"></script> 
+
+<!-- Start datatable js --> 
+<!--<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>-->
+<!--<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script> -->
+<script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script> 
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+<!-- others plugins --> 
+<script src="assets/js/plugins.js"></script> 
+<script src="assets/js/scripts.js"></script>
+    
+    <script type="text/javascript">
+        var table = document.getElementById("table_body");
+        var all_data = DataAll;
+        var all_data_num = Result_All_eng_num;
+        
+        var select_level1 = document.getElementById("select_level");
+        var select_risk1 = document.getElementById("select_risk");
+        var select_management1 = document.getElementById("select_management");
+        var select_credit1 = document.getElementById("select_credit");
+        var select_degree1 = document.getElementById("select_degree");
+        var select_trend1 = document.getElementById("select_trend");
+        var select_complain1 = document.getElementById("select_complain");
+        var select_city1 = document.getElementById("select_city");
+        
+        var button_search = document.getElementById("search");
+        var button_reload = document.getElementById("reload");
+		
+		function splitRange(str) {
+			let splitStr = str.split(",");
+			let rangeNum = [-1000, -1000];
+			if(splitStr.length === 2) {
+				rangeNum = [Number(splitStr[0]), Number(splitStr[1])];
+			}
+            console.log(splitStr.length);
+            console.log(rangeNum);
+			return rangeNum;
+		}
+        button_reload.onclick = function() {
+            location.reload();
+        }
+        
+        button_search.onclick = function() {
+			//先清空table
+            delete_table();
+            
+            let os_level = Number(select_level1.value);
+            let os_risk = Number(select_risk1.value);
+            let os_management = splitRange(select_management1.value);
+            let os_credit = splitRange(select_credit1.value);
+            let os_degree = Number(select_degree1.value);
+            let os_trend = Number(select_trend1.value);
+            let os_complain = splitRange(select_complain1.value);
+            let os_city = select_city1.value;
+            
+            
+            
+            /*组合多条件筛选结构*/
+            let makeConditions = {
+                
+                ranges: [
+                     {
+                          type: 'management',
+                          low: os_management[0],
+                          high: os_management[1]
+                     },
+					{
+                          type: 'credit',
+                          low: os_credit[0],
+                          high: os_credit[1]
+                     },
+                    {
+                        type: 'complain',
+                        low: os_complain[0],
+                        high: os_complain[1]
+                    }
+                ],
+                discrete: [
+                    { 
+                        type: 'level',
+                        value: os_level
+                    },
+                    {
+                        type: 'risk',
+                        value: os_risk
+                    },
+                    {
+                        type: 'degree',
+                        value: os_degree
+                    },
+					{
+						type: 'trend',
+						value: os_trend
+					},
+                    {
+                        type: 'city',
+                        value: os_city
+                    }
+                ]
+            };
+            //用查询结构进行查询
+            let multiSelectArr = doFilter(all_data_num, makeConditions);
+			//查询数据填充table
+            fill_table(multiSelectArr);
+        };
+        
+        
+    </script>
+    
+    <!--多条件筛选查询结构设计-->
+    <script type="text/javascript">
+        
+        var ProfileFilters = {
+             /**
+             * 区间类型筛选
+             * @param {array<Product>} products
+             * @param {array<{type: String, low: number, high: number}>} ranges
+             */
+             rangesFilter : function(enterprises, ranges) {
+
+                 if (ranges.length === 0) {
+                     return enterprises;
+                     } 
+                 else {
+                         for (let range of ranges) {
+                             
+                             if(range.high === -1000)
+                                 continue;
+                             
+                          // 多个不同类型区间是与逻辑，可以直接赋值给自身*******赋值给自身这步是关键，用它实现多条件筛选查询********
+                              enterprises = enterprises.filter(function (item) {
+                                  return item[range.type] >= range.low && item[range.type] <= range.high;
+								  
+                              });
+                          }
+                         return enterprises;
+                     }
+             },
+
+             /**
+             * 选择类型筛选
+             * @param {array<Product>} products
+             * @param {array<{type: String, value: String}>} chooses
+             */
+             discreteFilter: function (enterprises, chooses) {
+
+                 if (chooses.length === 0) {
+                    return enterprises;
+
+                 } 
+                 else {
+                  /**
+                  * 选择类型条件是或逻辑，全部单选
+                  */
+                      for (let choice of chooses) {
+                          
+                          if(choice.value === -1000 || choice.value === "未选择")
+                              continue;
+						  
+
+                          //*******赋值给自身这步是关键，用它实现多条件筛选查询，逻辑与的方式逐层筛选********
+                          enterprises = enterprises.filter(function (item) {
+                              console.log(choice.type);  
+                              console.log(choice.value);
+                               return item[choice.type] === choice.value;
+                          });
+                      }
+                }  
+                 return enterprises;
+             }
+        };
+        
+        function doFilter(enterprises, conditions) {
+             // 根据条件循环调用筛选器里的方法
+             for (key in conditions) {
+				 
+             // 判断是否有需要的过滤方法
+                 if (ProfileFilters.hasOwnProperty(key + 'Filter') && typeof ProfileFilters[key + 'Filter'] === 'function') {
+					 
+					 
+					 enterprises = ProfileFilters[key + 'Filter'](enterprises, conditions[key]);
+                 }
+             }
+             return enterprises;
+        }
+        
+    </script>
+    
+    <script type="text/javascript">
+        
+        function delete_table() {
+            
+            var children = table.childNodes;
+
+            var rowNum = children.length;
+
+            for(var j = 0; j < rowNum; j++) {
+                table.removeChild(children[0]); 
+            }            
+        }
+        
+        function fill_table(data) {            
+            for (let i = 0; i < data.length; i++) {
+                let tr = table.insertRow();
+                //设置行样式
+                tr.style.height="40px";
+                tr.style.marginTop = "1px";
+                tr.color = "#f00000";
+                
+                let obj = data[i];
+                
+                tr.insertCell().innerHTML = i + 1;
+                tr.insertCell().innerHTML = "<a href='EnterpriseDetail.html?deliverName=" + obj["enterpriseName"] + "'>" + obj["enterpriseName"] + "</a>";
+                tr.insertCell().innerHTML = obj["city"];
+                tr.insertCell().innerHTML = obj["industry"];
+                let td1 = tr.insertCell();
+                switch(obj["pkind"]) {
+                    case 1:
+                        td1.innerHTML = "水污染物";
+                        break;
+                    case 2:
+                        td1.innerHTML = "气污染物";
+                        break;
+                    case 3:
+                        td1.innerHTML = "水和气";
+                        break;
+                }
+                
+                let td2 = tr.insertCell();
+                switch(obj["level"]) {
+                    case 1:
+                        td2.style.backgroundColor = "#BFE4CE";
+                        break;
+                    case 2:
+                        td2.style.backgroundColor = "#C7DBF6";
+                        break;
+                    case 3:
+                        td2.style.backgroundColor = "#EFE9A2";
+                        break;
+                    case 4:
+                        td2.style.backgroundColor = "#ECA3A4";
+                        break;
+                       }
+                
+                td2.innerHTML = obj["level"];
+            }
+        }
+    </script>
+    
+    <script type = "text/javascript">
+        window.onload = function(){
+            
+            fill_table(Result_All_eng_num);
+            
+        };
+    
+    
+    
+    </script>
+    
+</body>
+</html>

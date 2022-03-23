@@ -1,0 +1,940 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>srtdash - ICO Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/themify-icons.css">
+    <link rel="stylesheet" href="assets/css/metisMenu.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/slicknav.min.css">
+    <!-- amchart css -->
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <!-- others css -->
+    <link rel="stylesheet" href="assets/css/typography.css">
+    <link rel="stylesheet" href="assets/css/default-css.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <!-- modernizr css -->
+    <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+	
+	
+	
+	<!--我自己添加的部分 -start-->
+	<script src="incubator-echarts-master/dist/echarts.js"></script>
+	<script type="text/javascript" src="data/Result_All_radar_eng.js"></script>
+	<script type = "text/javascript" src="data/Enterprise_All_utf8.js"></script>
+	<script type="text/javascript" src="data/Enterprise_All_trend.js"></script>
+    <script type="text/javascript" src="data/Result_All_eng.js"></script>
+    <script type="text/javascript" src="data/Enterprise_Credit.js"></script>
+    <script type="text/javascript" src="theme/macarons.js"></script>
+	
+	<!--我自己添加的部分 -end-->
+	
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- preloader area start -->
+	<!--接收跳转面页发过来的企业名称-->
+	<script type="text/javascript">
+		function getQueryVariable(variable) {
+       		let query_text = window.location.search.substring(1);
+       		let vars_recieve = query_text.split("&");
+       		for (let i=0;i<vars_recieve.length;i++) {
+               	let pair_value = vars_recieve[i].split("=");
+               	if(pair_value[0] == variable){return pair_value[1];}
+       		}
+       		return(false);
+		}
+		
+		let name_recieve = getQueryVariable("deliverName");
+		
+		
+		var h = decodeURI(name_recieve);//中文转码		
+	
+	</script>
+	
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- preloader area end -->
+    <!-- page container area start -->
+    <div class="page-container">
+        <!-- sidebar menu area start -->
+        <div class="sidebar-menu">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <a href="index.html"><img src="img/logo.png" alt="logo"></a>
+                </div>
+            </div>
+            <div class="main-menu">
+                <div class="menu-inner">
+                    <nav>
+                        <ul class="metismenu" id="menu">
+                            <li class="active">
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>区域</span></a>
+                                <ul class="collapse">
+                                    <li class="active"><a href="FrontPage.html">地图</a></li>
+                                    <li><a href="AreaChart.html">统计图表</a></li>
+                                    <li><a href="AreaStatistic.html">群体画像</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="EnterpriseTable.html" ><i class="ti-layout-sidebar-left"></i><span>企业列表</span>
+                                    </a>
+                                
+                            </li> 
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- sidebar menu area end -->
+        <!-- main content area start -->
+        <div class="main-content">
+            <!-- header area start -->
+           
+            <!-- header area end -->
+            <!-- page title area start -->
+            <div class="page-title-area">
+                <div class="row align-items-center">
+                    <div class="col-sm-6">
+                        <div class="breadcrumbs-area clearfix">
+                            <h4 id="titleName" class="page-title pull-left"></h4>
+                            <ul class="breadcrumbs pull-left">
+                                <li><a href="EnterpriseTable.html">返回企业列表</a></li>
+                                <li><span>个企画像</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 clearfix">
+                        <div class="user-profile pull-right">
+                            <img class="avatar user-thumb" src="assets/images/author/avatar.png" alt="avatar">
+                            <h4 class="user-name dropdown-toggle" data-toggle="dropdown">管理者 </h4>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- page title area end -->
+            <div class="main-content-inner">
+                <!-- sales report area start -->
+               <div class="row mt-3 mb-5"> <!---->
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title">企业信息</h4>
+                                <div class="cripto-live mt-5">
+                                    <ul>
+                                        <li>
+                                            <div class="fa fa-arrows"></div>企业名称
+                                            <span id="cell2_name"></span></li>
+                                        <li>
+                                            <div class="fa fa-arrows"></div> 所在市
+                                            <span id="cell2_city"></span></li>
+                                        <li>
+                                            <div class="fa fa-arrows"></div> 大气污染物
+                                            <span id="cell2_gas"></span></li>                                        
+                                        <li>
+                                            <div class="fa fa-arrows"></div> 大气排放标准
+                                            <span id="cell2_gas_standard"></span></li>
+                                        <li>
+                                            <div class="fa fa-arrows"></div> 水污染物
+                                            <span id="cell2_water"></span></li>
+                                        <li>
+                                            <div class="fa fa-arrows"></div> 水排放标准
+                                            <span id="cell2_water_standard"></span></li>
+                                        <li>
+                                            <div class="fa fa-arrows"></div> 排污许可证号
+                                            <span id="cell2_permission"></span></li>
+                                        <li>
+                                            <div class="fa fa-arrows"></div> 统一信用代码
+                                            <span id="cell2_enterpriseNum"></span></li>
+                                        <li>
+                                            <div class="fa fa-arrows"></div> 行业细分
+                                            <span id="cell2_industry"></span></li>
+                                        <li>
+                                            <div class="fa fa-arrows"></div> 行业大类
+                                            <span id="cell2_topIndustry"></span></li>
+                                    </ul>
+                                </div>
+								
+								
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- sales report area end -->
+                <!-- overview area start -->
+				
+				
+                <div class="row">
+                    
+                    <div class="col-lg-4 col-xl-5 h-25 mt-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title mb-0">雷达图</h4>
+                                <div id="chart-radar01" style="width: 500px; height: 400px"></div>
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-lg-4 mt-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title">画像指标</h4>
+                                <div class="cripto-live mt-5">
+                                    <ul>
+                                        <li>
+                                            <div class="fa fa-tripadvisor"></div>监管等级
+                                            <span id="cell1_level"></span></li>
+                                        <li>
+                                            <div class="fa fa-bar-chart"></div> 污染程度
+                                            <span id="cell1_degree"></span></li>
+                                        <li>
+                                            <div class="fa fa-bar-chart"></div> 排放趋势
+                                            <span id="cell1_trend"></span></li>                                        
+                                        <li>
+                                            <div class="fa fa-bar-chart"></div> 风险等级
+                                            <span id="cell1_risk"></span></li>
+                                        <li>
+                                            <div class="fa fa-bar-chart"></div> 环境信用
+                                            <span id="cell1_credit"></span></li>
+                                        <li>
+                                            <div class="fa fa-bar-chart"></div> 管理水平
+                                            <span id="cell1_management"></span></li>
+                                        <li>
+                                            <div class="fa fa-bar-chart"></div> 超标次数
+                                            <span id="cell1_exceed"></span></li>
+                                        <li>
+                                            <div class="fa fa-bar-chart"></div> 投诉次数
+                                            <span id="cell1_complain"></span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+					
+					
+                </div>
+                <!-- overview area end -->
+                <!-- market value area start -->
+                <div class="row mt-5 mb-5"> <!---->
+                    <div class="col-10">
+                        <div class="card">
+                            <div class="card-body">
+                                
+								<h5 id="text02"></h5>
+								<div id="naviBar02"></div>
+								<p id="output02"></p>
+								<div id="chart_01" style="width : 700px; height : 900px"></div>
+								
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- market value area end -->
+                <!-- row area start -->
+                <div class="row">
+                    <!-- Live Crypto Price area start -->
+                    
+                    <!-- Live Crypto Price area end -->
+                    <!-- trading history area start -->
+                    <div class="col-lg-8 mt-sm-30 mt-xs-30">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-sm-flex justify-content-between align-items-center">
+                                    <h4 class="header-title">各排放口趋势</h4>
+                                    <div class="trd-history-tabs">
+                                        <div id="nav_bar_table01"></div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="trad-history mt-4">
+                                    <div class="tab-content" id="myTabContent">
+                                       
+                                       
+                                            <div class="table-responsive">
+                                                <table class="dbkit-table" id="outletsTable">
+                                                      <thead >
+                                                        <tr class="heading-td">                        
+                                                            <th>污染物</th>                        
+                                                            <th>中位数</th>
+                                                            <th>标准</th>                      
+                                                            <th>超标次数</th>
+                                                            <th>趋势</th>
+                                                        </tr>
+                                                      </thead>
+                                                      <tbody id="outletsTbody" class="heading-td">
+
+                                                      </tbody>
+                                                </table>
+                                                
+                                            </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- trading history area end -->
+                </div>
+                <!-- row area end -->
+                
+                <!-- row area start-->
+            </div>
+        </div>
+        <!-- main content area end -->
+        <!-- footer area start-->
+      
+        <!-- footer area end-->
+    </div>
+    <!-- page container area end -->
+    <!-- offset area start -->
+   
+    <!-- offset area end -->
+    <!-- jquery latest version -->
+    <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
+    <!-- bootstrap 4 js -->
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/metisMenu.min.js"></script>
+    <script src="assets/js/jquery.slimscroll.min.js"></script>
+    <script src="assets/js/jquery.slicknav.min.js"></script>
+
+    <!-- start chart js -->
+    
+    <!-- all line chart activation -->
+    <script src="assets/js/line-chart.js"></script>
+    <!-- all pie chart -->
+    <script src="assets/js/pie-chart.js"></script>
+    <!-- others plugins -->
+    <script src="assets/js/plugins.js"></script>
+    <script src="assets/js/scripts.js"></script>
+	
+	<!--我自己添加的部分 -start-->
+	<script type="text/javascript">
+		
+		var title_name = document.getElementById("titleName");
+		title_name.innerHTML = h;
+		
+        var data01 = DataAllengRadar;
+
+        const newArr = data01.filter(function(p) {
+            return p.enterpriseName === h;
+        });
+        var enterprise = newArr[0];
+        
+    </script>
+    
+    <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById("chart-radar01"), 'macarons');
+        
+        
+        option = {
+            
+
+            radar: [
+
+                {
+                    indicator: [
+                        { text: '风险等级', max: 3 },
+                        { text: '环境管理', max: 100 },
+                        { text: '环境信用', max: 4 },
+                        { text: '污染程度', max: 3 },
+                        { text: '排放趋势', max: 3 }
+
+                    ],
+                    center: ['45%', '40%'],
+                    radius: 160
+                }
+            ],
+            series: [
+
+                {
+                    name: enterprise.enterpriseName,
+                    type: 'radar',
+                    //radarIndex: 1,
+                    data: [
+
+                        {
+                            value: [enterprise.risk, enterprise.management, enterprise.credit, enterprise.degree, enterprise.trend],
+                            name: '画像',
+                            areaStyle: {
+                                opacity: 0.8,
+                                color: new echarts.graphic.RadialGradient(0.5, 0.5, 1, [
+                                    {
+                                        color: '#B8D3E4',
+                                        offset: 0
+                                    },
+                                    {
+                                        color: '#72ACD1',
+                                        offset: 1
+                                    }
+                                ])
+                            }
+                        }
+                    ]
+                }
+            ]
+        };
+        myChart.setOption(option);
+
+
+
+    </script>
+	
+	
+	
+    
+    
+	<!--条目搜索另一个数据集
+		存至一个对象
+		取出时间轴-->
+
+	<script type="text/javascript">
+        var data02 = Enterprise_All; //要等于js文件内部变量名
+        
+        var cell = data02[0];
+        var text = document.getElementById("text02");
+        var output = document.getElementById("output02");
+    
+    
+        var newArr02 = data02.filter(function(p){
+            
+            return p.enterpriseName === h;
+            
+        });
+        text.innerHTML = newArr02[0].enterpriseName;
+        console.log(data02.length);
+        
+        var timeAxis = newArr02[0].outlets[0].pollutants[0].time
+    
+    </script>
+    
+    
+    
+	
+    
+    <!--再搜索另一个数据集-->
+    <script type="text/javascript">
+        var data03 = Enterprise_All_trend; //要等于js文件内部变量名            
+    
+        const newArr03 = data03.filter(function(p){
+            
+            return p.enterpriseName === h;
+            
+        });
+    </script>
+    
+    
+    <script type="text/javascript">
+        var data04 = DataAlleng; //要等于js文件内部变量名
+        var data05 = Enterprise_credit;
+            
+        var newArr04 = data04.filter(function(p){
+            
+            return p.enterpriseName === h;
+            
+        });
+        var newArr05 = data05.filter(function(p){
+            
+            return p.enterpriseName === h;
+            
+        });
+        var data05_credit = newArr05[0];
+        var data04_all = newArr04[0];
+        text.innerHTML = newArr04[0].enterpriseName;     
+        
+    
+    </script>
+    
+    
+    <script type = "text/javascript">
+        
+        var pollutants_init01 = newArr03[0].outlets[0].pollutants;
+        
+        fill_table01(pollutants_init01);
+		
+		function fill_table01(list) {
+			
+			var table = document.getElementById("outletsTable");
+            var tbody = document.getElementById("outletsTbody");
+            
+            
+            for (var i = 0; i < list.length; i++) {
+                var tr = tbody.insertRow();
+                //设置行样式
+                tr.style.height="40px";              
+                tr.className = "heading-td";
+                var obj = list[i];
+				
+				tr.insertCell().innerHTML = obj["pollutantName"];
+				tr.insertCell().innerHTML = obj["median"].toFixed(3);//保留小数点后三位
+				tr.insertCell().innerHTML = obj["unit"];
+				tr.insertCell().innerHTML = obj["exceed"];
+                var td = tr.insertCell();
+				
+                var img = document.createElement("img");
+                img.setAttribute("src", "img/"+ obj["trend"]+".png");
+                img.setAttribute("alt", "icon");
+                
+                td.innerHTML = obj["trend"];
+                td.appendChild(img);
+                
+                
+            }
+		}
+        
+    </script>
+	<script type="text/javascript">
+		window.onload = nav_bar_table01();
+        
+		function nav_bar_table01() {
+			var naviBar = document.getElementById("nav_bar_table01");
+			var outlets =  newArr03[0].outlets;
+            
+			outlets.forEach(function(outlet) {
+				var child = document.createElement("button");
+				child.innerHTML = outlet.outletName;
+            	naviBar.appendChild(child);
+                
+				child.onclick = function() {
+					delete_content01();
+					fill_table01(outlet.pollutants);
+                    
+				};
+			});
+					
+		}
+        
+        function delete_content01() {
+            
+            var tbody = document.getElementById("outletsTbody");
+                
+            var children = tbody.childNodes;
+            
+            var rowNum = children.length;
+                
+            for(var i = 0; i < rowNum; i++) {                    
+                  
+                tbody.removeChild(children[0]); 
+            }            
+        }	
+        
+	
+	</script>
+    
+    
+    
+	<!--各outlet导航条
+		第一页显示-->
+    
+    <script type="text/javascript">
+        
+        var outletList = newArr02[0].outlets;
+        
+        window.onload = function() {
+			outletList.forEach(function(outlet) {  //js的forEach形式
+				var naviBar = document.getElementById("naviBar02");
+				var child = document.createElement("button");
+				child.innerHTML = outlet.outletName;
+                naviBar.appendChild(child);
+                child.onclick = function() {
+                    
+                    output.innerHTML = outlet.outletName;
+                    
+                    var myChart2 = echarts.init(document.getElementById('chart_01'));
+					
+					var titles = [];
+        
+                    var grids = [];
+                    var xAxes = [];
+                    var yAxes = [];
+                    var series = [];
+                    var count = 0;
+
+                    echarts.util.each(outlet.pollutants, function (pollutant, name) {
+                        //console.log(pollutant.pollutantName);
+						
+						titles.push({
+							textAlign: 'center',
+							text: pollutant.pollutantName,
+							textStyle: {
+								fontSize: 15,
+								fontWeight: 'normal'
+							}
+						});
+
+                        grids.push({
+                            show: true,
+                            borderWidth: 1,
+                            backgroundColor: '#ebeff0',
+                            shadowColor: 'rgba(0, 0, 0, 0.3)',
+                            shadowBlur: 2
+                        });
+		
+		
+                        xAxes.push({
+
+                                type: 'category',
+                                boundaryGap: true,
+                                data: timeAxis,
+                                gridIndex: count
+                            });
+
+                        yAxes.push({
+
+                            type: 'value',
+                            gridIndex: count
+
+                        });
+
+                        series.push({
+
+                            name: 'no',
+                            type: 'line',
+
+                            lineStyle: {
+                                width: 1,
+                                shadowColor: 'rgba(0,0,0,0.4)',
+                                shadowBlur: 10,
+                                shadowOffsetY: 10
+                            },
+                            data: pollutant.dailyValue,
+                            showSymbol: false,
+                            xAxisIndex: count,
+                            yAxisIndex: count,
+                            markPoint: {
+                                itemStyle: {
+
+                                },
+                                data: [
+                                    {type: 'max', name: '最大值'},
+                                    {type: 'min', name: '最小值'}
+                                ]
+                            }
+
+                        });
+
+                        echarts.util.each(grids, function (grid, idx) {
+                            grid.left = '5%';                
+                            grid.top = (idx * 25 + 5) + '%';
+                            grid.width = '90%';
+                            grid.height = '16%';
+							
+							titles[idx].left = parseFloat(grid.left) + parseFloat(grid.width) / 5 + '%';
+    						titles[idx].top = (parseFloat(grid.top) - 4) + '%';
+
+                        });
+
+                        count++;
+
+
+                    });      
+        
+                    option = {
+                        toolbox: {
+                            show: true,
+                            feature: {
+                                dataZoom: {
+                                    yAxisIndex: 'none'
+                            },                
+                            magicType: {type: ['line', 'bar']},
+                            restore: {},
+
+                            }
+                        },
+                        tooltip: {
+                                trigger: 'axis'
+                        },
+						title: titles,
+                        grid: grids,
+                        xAxis: xAxes,
+                        yAxis: yAxes,
+                        series: series
+                    };
+
+                    myChart2.setOption(option);
+
+                }
+                            
+			});						
+			
+		}
+    
+    
+    
+    </script>
+    
+    
+    <!--<div id="navigation_bar"></div>-->
+    
+            
+    <!--第一页显示的内容为第一个outlet（重复的代码，可封装)-->
+    
+	<script type="text/javascript">
+		var myChart2 = echarts.init(document.getElementById('chart_01'), 'macarons');
+        
+        
+        var titles = [];
+		var grids = [];
+        var xAxes = [];
+		var yAxes = [];
+		var series = [];
+        var count = 0;
+		output.innerHTML = newArr02[0].outlets[0].outletName;
+		echarts.util.each(newArr02[0].outlets[0].pollutants, function (pollutant, name) {
+			//console.log(pollutant.pollutantName);
+			
+			titles.push({
+				textAlign: 'center',
+				text: pollutant.pollutantName,
+				textStyle: {
+					fontSize: 15,
+					fontWeight: 'normal'
+				}
+			});				
+        
+            grids.push({
+                show: true,
+                borderWidth: 1,
+                backgroundColor: '#ebeff0',
+                shadowColor: 'rgba(0, 0, 0, 0.3)',
+                shadowBlur: 2
+            });
+		
+		
+            xAxes.push({
+
+                    type: 'category',
+                    boundaryGap: true,
+                    data: timeAxis,
+                    gridIndex: count
+                });
+            
+            yAxes.push({
+
+                type: 'value',
+                gridIndex: count
+
+            });
+            
+            series.push({
+
+                name: 'no',
+                type: 'line',
+                
+                lineStyle: {
+                    width: 1,
+                    shadowColor: 'rgba(0,0,0,0.4)',
+                    shadowBlur: 10,
+                    shadowOffsetY: 10
+                },
+                data: pollutant.dailyValue,
+                showSymbol: false,
+                xAxisIndex: count,
+                yAxisIndex: count,
+                markPoint: {
+                    itemStyle: {
+                                               
+                    },
+                    data: [
+                        {type: 'max', name: '最大值'},
+                        {type: 'min', name: '最小值'}
+                    ]
+                }
+
+            });
+        
+            echarts.util.each(grids, function (grid, idx) {
+                grid.left = '5%';                
+                grid.top = (idx * 25 + 5) + '%';
+                grid.width = '90%';
+                grid.height = '16%';
+				
+				titles[idx].left = parseFloat(grid.left) + parseFloat(grid.width) / 5 + '%';
+    			titles[idx].top = (parseFloat(grid.top) - 4) + '%';
+
+            });
+            
+            count++;
+            
+        
+        });      
+        
+		option = {
+            toolbox: {
+                show: true,
+                feature: {
+                    dataZoom: {
+                        yAxisIndex: 'none'
+                },                
+                magicType: {type: ['line', 'bar']},
+                restore: {},
+                
+                }
+            },
+            tooltip: {
+                    trigger: 'axis'
+            },
+			title: titles,
+            grid: grids,
+            xAxis: xAxes,
+            yAxis: yAxes,
+            series: series
+		};
+        
+        myChart2.setOption(option);
+	
+	</script>
+	<script type="text/javascript">
+        var cell_level1 = document.getElementById("cell1_level");
+        var cell_degree1 = document.getElementById("cell1_degree");
+        var cell_trend1 = document.getElementById("cell1_trend");
+        var cell_risk1 = document.getElementById("cell1_risk");
+        var cell_credit1 = document.getElementById("cell1_credit");
+        var cell_management1 = document.getElementById("cell1_management");
+        var cell_exceed1 = document.getElementById("cell1_exceed");
+        var cell_complain1 = document.getElementById("cell1_complain");
+        
+        
+        
+        switch(data04_all.level) {
+                case "1" :
+                    cell_level1.classList.add("btn-success");
+                    cell_level1.innerHTML = "表现优秀";                    
+                    break;
+                case "2" :
+                    cell_level1.classList.add("btn-primary");
+                    cell_level1.innerHTML = "表现良好";                    
+                    break;
+                case "3" :
+                    cell_level1.classList.add("btn-warning");
+                    cell_level1.innerHTML = "表现较差";                    
+                    break;
+                case "4" :
+                    cell_level1.classList.add("btn-danger");
+                    cell_level1.innerHTML = "表现不良";                    
+                    break;
+        }
+        switch(data04_all.degree) {
+                case "1" :
+                    cell_degree1.innerHTML = "轻";                    
+                    break;
+                case "2" :
+                    cell_degree1.innerHTML = "中";                    
+                    break;
+                case "3" :
+                    cell_degree1.innerHTML = "重";                    
+                    break;
+                
+        }
+        switch(data04_all.trend) {
+                case "-1" :
+                    cell_trend1.innerHTML = "下降";                    
+                    break;
+                case "0" :
+                    cell_trend1.innerHTML = "平缓";                    
+                    break;
+                case "1" :
+                    cell_trend1.innerHTML = "上升";                    
+                    break;
+                
+        }
+        switch(data04_all.risk) {
+                case "1" :                    
+                    cell_risk1.innerHTML = "低";                    
+                    break;
+                case "2" :                    
+                    cell_risk1.innerHTML = "较低";                    
+                    break;
+                case "3" :
+                    cell_risk1.innerHTML = "中";                    
+                    break;
+                case "4" :                    
+                    cell_risk1.innerHTML = "较高";                    
+                    break;
+                case "5" :                    
+                    cell_risk1.innerHTML = "高";                    
+                    break;
+        }
+        var year_list = ["2016", "2017", "2018", "2019"];
+        year_list.forEach(function(year) {
+            switch(data05_credit[year]) {
+                case "1" :
+                    var child001 = document.createElement("span");
+                    child001.className = "badge badge-success";
+                    child001.innerHTML = year; 
+                    cell_credit1.appendChild(child001);
+                    break;
+                case "2" :
+                    var child001 = document.createElement("span");
+                    child001.className = "badge badge-primary";
+                    child001.innerHTML = year; 
+                    cell_credit1.appendChild(child001);                    
+                    break;
+                case "3" :
+                    var child001 = document.createElement("span");
+                    child001.className = "badge badge-warning";
+                    child001.innerHTML = year; 
+                    cell_credit1.appendChild(child001);                    
+                    break;
+                case "4" :
+                    var child001 = document.createElement("span");
+                    child001.className = "badge badge-danger";
+                    child001.innerHTML = year; 
+                    cell_credit1.appendChild(child001);                    
+                    break;
+            }
+        });
+        cell_management1.innerHTML = data04_all.management + "/100";
+        
+        cell_exceed1.innerHTML = data04_all.exceed + "次";
+        
+        cell_complain1.innerHTML = data04_all.complain + "次";
+    </script>
+    
+    <script type="text/javascript">
+        var cell_name2 = document.getElementById("cell2_name");
+        var cell_city2 = document.getElementById("cell2_city");
+        var cell_gas2 = document.getElementById("cell2_gas");
+        var cell_gas_standard2 = document.getElementById("cell2_gas_standard");
+        var cell_water2 = document.getElementById("cell2_water");
+        var cell_water_standard2 = document.getElementById("cell2_water_standard");
+        var cell_permission2 = document.getElementById("cell2_permission");
+        var cell_enterpriseNum2 = document.getElementById("cell2_enterpriseNum");
+        var cell_industry2 = document.getElementById("cell2_industry");
+        var cell_topIndustry2 = document.getElementById("cell2_topIndustry");
+        
+        cell_name2.innerHTML = data04_all.enterpriseName;
+        cell_city2.innerHTML = data04_all.city;
+        cell_gas2.innerHTML = data04_all.gas;
+        cell_gas_standard2.innerHTML = data04_all.gasStandard;
+        cell_water2.innerHTML = data04_all.water;
+        cell_water_standard2.innerHTML = data04_all.waterStandard;
+        cell_permission2.innerHTML = data04_all.permission;
+        cell_enterpriseNum2.innerHTML = data04_all.enterpriseNum;
+        cell_industry2.innerHTML = data04_all.industry;
+        cell_topIndustry2.innerHTML = data04_all.topIndustry;
+    
+    </script>
+    
+
+	
+	
+	
+	
+	<!--我自己添加的部分 -end-->
+	
+</body>
+
+</html>
